@@ -27,8 +27,9 @@ img {
 /* ID */
 
 #Content {
-    width: 100%;
+    width: 98%;
     height: 93%;
+    padding: 1%;
 }
 
 #Menu {
@@ -44,6 +45,7 @@ img {
 
     #Menu ul {
         list-style: none;
+        margin-bottom: 10px;
     }
 
         #Menu ul li {
@@ -51,7 +53,7 @@ img {
             display: inline-block;
             width: 33%;
             text-align: center;
-            padding: 20px 0 0 0;
+            padding: 1% 0;
         }
 
             #Menu ul li a {
