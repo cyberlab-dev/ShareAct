@@ -4,33 +4,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu:700&display=swap" rel="stylesheet">
+    <script src="js/routes.js"></script>
     <title>ShareAct</title>
 
 </head>
 <body>
     <div id="Content">
-        <object id="viewContent" data="views/home.html"></object>
-        <script>
-            var full_url = document.URL; // Get current url
-            var url_array = full_url.split('?') // Split the string into an array with ? as separator
-            var site_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
-            //alert( site_segment ); // Alert last segment
-
-            if (site_segment === "chat") {
-                var viewpath = "views/chat.html";
-                document.getElementById("viewContent").setAttribute("data", viewpath);
-            } else if (site_segment === "profile") {
-                var viewpath = "views/profile.html";
-                document.getElementById("viewContent").setAttribute("data", viewpath);
-            } else {
-                var viewpath = "views/home.html";
-                document.getElementById("viewContent").setAttribute("data", viewpath);
-            }
-
-            if ("import" in document.createElement("link")) {
-                // This browser supports HTML5 Imports.
-            }
-        </script>
 
         <form action="#" method="POST" autocomplete="off">
             <fieldset>
@@ -74,9 +53,9 @@
 
     <div id="Menu">
         <ul>
-            <li><a href="index.html?home"><img src="img/icons/iconHome.png" alt="Home"> Home</a></li>
-            <li><a href="index.html?chat"><img src="img/icons/iconChat.png" alt="Chat"> Chat</a></li>
-            <li><a href="index.html?profile"><img src="img/icons/iconProfile.png" alt="Profile"> Profile</a></li>
+            <li><a href="#" onclick="loadView('home')"><img src="img/icons/iconHome.png" alt="Home"> Home</a></li>
+            <li><a href="#" onclick="loadView('chat')"><img src="img/icons/iconChat.png" alt="Chat"> Chat</a></li>
+            <li><a href="#" onclick="loadView('profile')"><img src="img/icons/iconProfile.png" alt="Profile"> Profile</a></li>
         </ul>
     </div>
 </body>
