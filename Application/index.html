@@ -26,7 +26,50 @@
                 var viewpath = "views/home.html";
                 document.getElementById("viewContent").setAttribute("data", viewpath);
             }
+
+            if ("import" in document.createElement("link")) {
+                // This browser supports HTML5 Imports.
+            }
         </script>
+
+        <form action="#" method="POST" autocomplete="off">
+            <fieldset>
+                <legend>Sign Up for ShareAct</legend>
+                <label> Username
+                    <input type="text" name="userName" placeholder="Username here">
+                </label>
+
+                <label> Email
+                    <input type="text" name="userMail" placeholder="Email here">
+                </label>
+
+                <label> Password
+                    <input type="password" name="userPass" placeholder="Password here">
+                </label>
+
+                <label> Retype Password
+                    <input type="password" name="userPass2" placeholder="Password here again">
+                </label>
+
+                <input type="submit" value="Sign Up">
+            </fieldset>
+        </form>
+
+        <form action="#" method="POST" autocomplete="off">
+            <fieldset>
+                <legend>Sign In for ShareAct</legend>
+                <label> Username
+                    <input type="text" name="userName" placeholder="Username here">
+                </label>
+
+                <label> Password
+                    <input type="password" name="userPass" placeholder="Password here">
+                </label>
+
+                <input type="submit" value="Sign In">
+            </fieldset>
+        </form>
+
     </div>
 
     <div id="Menu">
