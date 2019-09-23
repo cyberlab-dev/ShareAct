@@ -20,8 +20,8 @@ p, form, address {
 }
 
 img {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
 }
 
 form {
@@ -63,7 +63,7 @@ form {
     width: 98%;
     height: 93%;
     padding: 1%;
-    margin-bottom: 50px;
+    margin-bottom: 7%;
 }
 
 #Menu {
@@ -94,6 +94,7 @@ form {
             #Menu ul li a {
                 text-decoration: none;
                 font-family: 'Ubuntu', sans-serif;
+                font-size: 1.4em;
                 position: absolute;
                 text-align: center;
                 bottom: 45%;
