@@ -105,18 +105,22 @@ form {
             height: 100%;
         }
 
+        #Menu ul li:hover {
+            background-color: #0E0E10;
+        }
+
             #Menu ul li a {
                 text-decoration: none;
                 font-family: 'Ubuntu', sans-serif;
                 font-size: 18px;
                 text-align: center;
-                padding-top: 25px;
+                /*padding-top: 25px;
                 padding-bottom: 25px;
-                display: block;
+                display: block;*/
+                position: fixed;
+                bottom: 25px;
+                margin-bottom: 0;
+                margin-left: 14%;
             }
-
-                #Menu ul li:hover {
-                    background-color: #0E0E10;
-                }
 
 /* CLASS */
