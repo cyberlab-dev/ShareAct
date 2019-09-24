@@ -114,13 +114,8 @@ form {
                 font-family: 'Ubuntu', sans-serif;
                 font-size: 18px;
                 text-align: center;
-                /*padding-top: 25px;
-                padding-bottom: 25px;
-                display: block;*/
-                position: fixed;
-                bottom: 25px;
-                margin-bottom: 0;
-                margin-left: 14%;
+                margin-top: 25px;
+                display: block;
             }
 
 /* CLASS */
