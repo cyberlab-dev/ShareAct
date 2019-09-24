@@ -37,39 +37,59 @@ img {
 }
 
 form {
-    margin: 20px 0;
     font-size: 18px;
+    width: 300px;
+    margin: 0 auto;
 }
 
-    form legend {
-        padding: 0 10px;
-        margin: 0 20px;
+    form .headerText {
+        margin: 50px auto 0 auto;
+        display: block;
+        font-size: 24px;
+        width: 100%;
+        text-align: center;
     }
 
     form label {
         display: block;
-        margin: 15px 0 15px 10px;
+        margin: 25px 0 15px 10px;
+        text-indent: 16px;
     }
 
         form label input {
             display: block;
             margin: 5px 0 0 0;
+            width: 100%;
             padding: 7px 5px;
-            min-width: 95%;
             background-color: #1B1A1D;
-            border-color: #999;
+            border: 1px solid #999;
+            border-radius: 25px;
             color: #FFFFFF;
             font-size: 18px;
+            text-indent: 10px;
         }
 
     form input[type=submit] {
-        display: block;
-        margin: 15px 0 15px 10px;
-        padding: 12px 10px;
+        display: inline-block;
+        margin: 25px auto 0 25px;
+        padding: 15px;
+        border-radius: 25px;
         background-color: #1B1A1D;
-        border-color: #999;
+        border: 1px solid #999;
         color: #FFFFFF;
         font-size: 16px;
+    }
+
+    form a {
+        display: inline-block;
+        margin: 25px auto 0 90px;
+        padding: 15px;
+        border-radius: 25px;
+        background-color: #1B1A1D;
+        border: 1px solid #999;
+        color: #FFFFFF;
+        font-size: 16px;
+        text-decoration: none;
     }
 
 /* ID */
@@ -77,8 +97,7 @@ form {
 #Content {
     width: 98%;
     height: 90%;
-    padding: 1%;
-    margin-bottom: 10%;
+    padding: 1% 1% 8% 1%;
 }
 
 #Menu {
