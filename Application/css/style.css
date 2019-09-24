@@ -48,6 +48,7 @@ form {
         font-size: 24px;
         width: 100%;
         text-align: center;
+        text-indent: 0;
     }
 
     form label {
@@ -69,11 +70,16 @@ form {
             text-indent: 10px;
         }
 
+            form label input:focus {
+                background-color: #0E0E10;
+                outline: none;
+            }
+
     form input[type=submit] {
         display: inline-block;
         margin: 25px auto 0 25px;
         padding: 15px;
-        border-radius: 25px;
+        border-radius: 4px;
         background-color: #1B1A1D;
         border: 1px solid #999;
         color: #FFFFFF;
@@ -89,12 +95,16 @@ form {
         display: inline-block;
         margin: 25px auto 0 90px;
         padding: 15px;
-        border-radius: 25px;
+        border-radius: 4px;
         background-color: #1B1A1D;
         border: 1px solid #999;
         color: #FFFFFF;
         font-size: 16px;
         text-decoration: none;
+    }
+
+    form a:hover, form input[=submit]:hover {
+        background-color: #0E0E10;
     }
 
 /* ID */
