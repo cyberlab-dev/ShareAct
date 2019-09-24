@@ -80,6 +80,11 @@ form {
         font-size: 16px;
     }
 
+    form .regBtn {
+        display: block;
+        margin: 25px auto 0 auto;
+    }
+
     form a {
         display: inline-block;
         margin: 25px auto 0 90px;

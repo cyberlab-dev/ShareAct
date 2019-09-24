@@ -6,16 +6,6 @@ function loadView(view) {
             document.getElementById("Content").innerHTML = this.responseText;
         }
     };
-    /*if (viewPath == 'chat') {
-        xhttp.open("GET", "views/chat.html", true);
-        xhttp.send();
-    } else if (viewPath == 'profile') {
-        xhttp.open("GET", "views/profile.html", true);
-        xhttp.send();
-    } else {
-        xhttp.open("GET", "views/home.html", true);
-        xhttp.send();
-    } */
 
     switch(viewPath) {
     case 'chat':
