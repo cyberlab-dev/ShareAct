@@ -1,13 +1,10 @@
 var mysql = require('mysql');
+
 var connection = mysql.createConnection({
-    host     : 'www.shareact.tech',
+    host     : '206.81.29.12',
     user     : 'bacheloruserdb',
     password : '123123pp',
     database : 'shareactdb'
-});
-
-connection.connect(function(err) {
-    if (err) throw err;
 });
 
 module.exports = connection;
