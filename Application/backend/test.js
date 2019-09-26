@@ -1,17 +1,15 @@
 const appclass = require('./app');
 
-//appclass.insertUser('persha95','persha95@gmail.com','123123pp');
-//console.log('insert user works!');
-//var something = appclass.authUser('persha95','123123pp');
+appclass.checkIfUserExists("persha95","123123pp", function(err,data){
+    if (err) {
+        // error handling code goes here
+        console.log("ERROR : ",err);
+        return false;
+    } else {
+        // code to execute on data retrieval
+        console.log("result from db is : ",data);
+        return true;
+    }
+});
 
-//if (something) {
-//    console.log(something);
-//} else {
-//    console.log("falsefalsefalsefalse");
-//}
-if (appclass.checkIfExists("persha95","123123pp")) {
-    console.log("true");
-} else {
-    console.log("falsefalsefalse");
-}
 
