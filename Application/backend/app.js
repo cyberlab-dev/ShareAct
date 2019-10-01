@@ -19,7 +19,7 @@ function checkIfUserExists(un, up, callback)  {
     let sql = "SELECT UserName, UserPass FROM Users WHERE UserName = "+"'"+un+"' AND UserPass = '"+up+"';";
     con.query(sql, function(err, result) {
         if (err)
-            callback(err,null);
+            callback(false,null);
         else
             callback(null,result[0].UserName);
 
