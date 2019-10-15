@@ -25,18 +25,24 @@ server.get("/json", (req, res) => {
 
 server.post("/login", (req, res) => {
     let json_input = req.body;
+    console.log(json_input);
     let username = json_input["username"];
     let password = json_input["password"];
 
     appclass.checkIfUserExists(username,password, function(err,data){
         if (err) {
             // error handling code goes here
-            res.status(404).send(false);
-            console.log("ERROR : ",err);
+            //res.json({message: false});
+            // res.status(404).send(false);
+            // console.log("ERROR : ",err);
+            console.log("failed...");
+            return false;
         } else {
             // code to execute on data retrieval
-            res.status(200).send(true);
+            //res.json({message: true});
+            //res.status(200).send(true);
             console.log("result from db is : ",data);
+            return true;
         }
     });
 });
@@ -62,4 +68,40 @@ server.post("/register", (req, res) => {
 
 server.listen(port, () => {
     console.log(`Server listening at ${port}`);
+});
+
+// appclass.checkIfUserExists("persha95","123123pp", function(err,data){
+//     if (err) {
+//         // error handling code goes here
+//         //res.json({message: false});
+//         // res.status(404).send(false);
+//         // console.log("ERROR : ",err);
+//         console.log("failed...");
+//         return false;
+//     } else {
+//         // code to execute on data retrieval
+//         //res.json({message: true});
+//         //res.status(200).send(true);
+//         console.log("result from db is : ",data);
+//         return true;
+//     }
+// });
+
+
+
+appclass.checkUser("persha95","123123psp",function(err,data){
+    if (err) {
+        // error handling code goes here
+        //res.json({message: false});
+        // res.status(404).send(false);
+        // console.log("ERROR : ",err);
+        console.log("failed...");
+        return false;
+    } else {
+        // code to execute on data retrieval
+        //res.json({message: true});
+        //res.status(200).send(true);
+        console.log("result from db is : ",data);
+        return true;
+    }
 });

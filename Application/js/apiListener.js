@@ -42,13 +42,13 @@ function apiRegister() {
 }
 
 
-function apilogin() {
+function apiLogin() {
 
     //retrieving data from login form
     //var username = document.forms["loginForm"]["userName"].value;
     //var password = document.forms["loginForm"]["userPass"].value;
     var username = "persha95";
-    var password = "123123pp";
+    var password = "123123pdp";
     // url of the specified API
     var url = "http://localhost:4000/login";
 
@@ -56,42 +56,29 @@ function apilogin() {
     var data = {};
     data.username = username;
     data.password = password;
-    var json = JSON.stringify(data);
 
-    // preparing the request
+
+
+
+    var jsonSend = JSON.stringify(data);
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-    try {
-        xhr.onload = function () {
-            var returnValue = JSON.parse(xhr.responseText);
-            if (returnValue) {
-                console.log("logged in!");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var jsonReceive = JSON.parse(xhr.responseText);
+            if (jsonReceive["message"]) {
+                console.log("true");
             } else {
-                console.log("not logged in.....");
-                //window.location.href = "views/loginNotCompletePage.html";
+                console.log("false");
             }
-            // if (xhr.readyState == 4 && xhr.status == "201") {
-            //     //console.table(users);
-            // } else {
-            //     console.error(users);
-            // }
-        };
 
-        // sending the request
-        var returnValue = xhr.send(json);
-
-        if (returnValue) {
-            //window.location.href = "views/loginCompletePage.html";
-        } else {
-            //window.location.href = "views/loginNotCompletePage.html";
         }
-    } catch(e) {
-        console.log('catch', e);
-    }
-    // return value whether it is true or false
-    //return xhr.response;
+    };
+    // var data = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+    xhr.send(jsonSend);
 
 }
 
-apilogin();
+apiLogin();
