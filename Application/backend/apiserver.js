@@ -1,40 +1,37 @@
-var express = require('express');
-var fs = require("fs");
-var appclass = require('./app');
-
-var app = express();
-
-app.get('/authuser', function (req, res) {
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
-        var obj = JSON.parse(data);
-        var username = obj["user"]['username'];
-        var password = obj["user"]['password'];
-
-        appclass.checkIfUserExists(username,password, function(err,data){
-            if (err) {
-                // error handling code goes here
-                res.status(404).send(false);
-                console.log("ERROR : ",err);
-            } else {
-                // code to execute on data retrieval
-                res.status(200).send(true);
-                console.log("result from db is : ",data);
-            }
-        });
+// Used this tutorial: https://dev.to/lenmorld/quick-rest-api-with-node-and-express-in-5-minutes-336j
 
 
-        // var keys = Object.keys(obj);
-        // for (var i = 0; i < keys.length; i++) {
-        //     console.log(obj[keys[i]]);
-        // }
-        //console.log(data);
+// importing the required modules in order for the API server to run and work.
+const express = require('express');
+const body_parser = require('body-parser');
 
+// importing the selfmade app module.
+const appclass = require('./app');
 
-    });
+// express instance invoked and port number made as an instance.
+const server = express();
+const port = 4000;
+
+// parse incoming JSON (application/json content-type)
+server.use(body_parser.json());
+
+// server.get("/", (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+// });
+
+server.get("/json", (req, res) => {
+    res.json({ message: "Hello world" });
+    //console.log("nice, well done GET!");
 });
 
-var server = app.listen(8081, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port);
+server.post("/login", (req, res) => {
+    // const item = req.body;
+    let username = req.params.username;
+
+    // return updated list
+    res.json(username);
+});
+
+server.listen(port, () => {
+    console.log(`Server listening at ${port}`);
 });
