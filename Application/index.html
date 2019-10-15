@@ -6,11 +6,12 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu:700&display=swap" rel="stylesheet">
     <script src="js/routes.js"></script>
+    <script src="js/apiListener.js"></script>
     <title>ShareAct</title>
 </head>
 <body>
     <div id="Content">
-        <form action="#" method="POST" autocomplete="off">
+        <form name="loginForm" onsubmit="return apilogin()" method="POST" autocomplete="off">
             <label class="headerText">Login</label>
             <label> Username
                 <input type="text" name="userName" placeholder="Username here">

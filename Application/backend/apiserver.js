@@ -21,15 +21,43 @@ server.use(body_parser.json());
 
 server.get("/json", (req, res) => {
     res.json({ message: "Hello world" });
-    //console.log("nice, well done GET!");
 });
 
 server.post("/login", (req, res) => {
-    // const item = req.body;
-    let username = req.params.username;
+    let json_input = req.body;
+    let username = json_input["username"];
+    let password = json_input["password"];
 
-    // return updated list
-    res.json(username);
+    appclass.checkIfUserExists(username,password, function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+            console.log("result from db is : ",data);
+        }
+    });
+});
+
+server.post("/register", (req, res) => {
+    let json_input = req.body;
+    let username = json_input["username"];
+    let email = json_input["email"];
+    let password = json_input["password"];
+
+    appclass.insertUser(username,email,password, function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+            console.log("result from db is : ",data);
+        }
+    });
 });
 
 server.listen(port, () => {

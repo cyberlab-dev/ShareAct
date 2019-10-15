@@ -34,6 +34,3 @@ server.get('/authuser', function (req, res) {
 
     });
 });
-
-
-
