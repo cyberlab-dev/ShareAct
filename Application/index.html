@@ -11,14 +11,15 @@
 </head>
 <body>
     <div id="Content">
-        <form name="loginForm" onsubmit="return apiLogin()" method="POST" autocomplete="off">
+<!--        <form id="loginForm" name="loginForm" onsubmit="loadView('chat')" method="GET" autocomplete="off">-->
+        <form id="loginForm" name="loginForm" onsubmit="return apiLogin()" method="GET" autocomplete="off">
             <label class="headerText">Login</label>
             <label> Username
-                <input type="text" name="userName" placeholder="Username here">
+                <input id="userName" type="text" name="userName" placeholder="Username here">
             </label>
 
             <label> Password
-                <input type="password" name="userPass" placeholder="Password here">
+                <input id="userPass" type="password" name="userPass" placeholder="Password here">
             </label>
 
             <input type="submit" value="Sign In">

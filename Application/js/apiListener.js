@@ -1,9 +1,9 @@
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//
 
 // Create a request variable and assign a new XMLHttpRequest object to it.
 
 function apiRegister() {
-
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     //retrieving data from registration form
     var username = document.forms["registerForm"]["userName"].value;
     var email = document.forms["registerForm"]["userMail"].value;
@@ -24,12 +24,11 @@ function apiRegister() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = function () {
-        var users = JSON.parse(xhr.responseText);
-        if (xhr.readyState == 4 && xhr.status == "201") {
-            console.table(users);
+        var response = JSON.parse(xhr.responseText);
+        //if (xhr.readyState == 4 && xhr.status == "201") {
+        if (response["message"]) {
             return true;
         } else {
-            console.error(users);
             return false;
         }
     };
@@ -43,12 +42,12 @@ function apiRegister() {
 
 
 function apiLogin() {
-
+    //window.location.replace("/views/loginCompletePage.html");
+    //loadView('loginsuccess');
+    //window.location.href= "/views/loginCompletePage.html";
     //retrieving data from login form
-    //var username = document.forms["loginForm"]["userName"].value;
-    //var password = document.forms["loginForm"]["userPass"].value;
-    var username = "persha95";
-    var password = "123123pdp";
+    var username = document.getElementById("userName").value;
+    var password = document.getElementById("userPass").value;
     // url of the specified API
     var url = "http://localhost:4000/login";
 
@@ -57,28 +56,37 @@ function apiLogin() {
     data.username = username;
     data.password = password;
 
-
-
-
-    var jsonSend = JSON.stringify(data);
-
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var jsonReceive = JSON.parse(xhr.responseText);
-            if (jsonReceive["message"]) {
-                console.log("true");
-            } else {
-                console.log("false");
-            }
-
-        }
+           var json = JSON.parse(xhr.responseText);
+           if (json["message"] === true) {
+               console.log("login successful!");
+               // var myVariable = json.message;
+               //
+               // sessionStorage['myvariable'] = myVariable;
+               //
+               // var readValue = sessionStorage['myvariable'];
+               // console.log(readValue);
+           } else {
+               console.log("login failed...");
+               //loadView('loginfail');
+           }
+       }
     };
-    // var data = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+
+    var jsonSend = JSON.stringify(data);
     xhr.send(jsonSend);
 
 }
 
-apiLogin();
+function apiTest() {
+    var myVariable = "Hello World";
+
+    sessionStorage['myvariable'] = myVariable;
+
+    var readValue = sessionStorage['myvariable'];
+    console.log(readValue);
+}
