@@ -60,6 +60,7 @@ server.post("/login", (req, res) => {
     });
 });
 
+// API for user registration
 server.post("/register", (req, res) => {
     let json_input = req.body;
     let username = json_input["username"];
@@ -79,43 +80,79 @@ server.post("/register", (req, res) => {
     });
 });
 
+// API for creating posts
+server.post("/post", (req, res) => {
+    let json_input = req.body;
+    let posttitle = json_input["posttitle"];
+    let postdesc = json_input["postdesc"];
+    let postimg = json_input["postimg"];
+    let userid = json_input["userid"];
+
+    app.insertPost(posttitle, postdesc, postimg, userid, function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
+
+// API for getting all posts
+server.post("/getposts", (req, res) => {
+    app.fetchPosts(function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(data);
+        }
+    });
+});
+
+// API for getting all posts
+server.post("/editpost", (req, res) => {
+    let json_input = req.body;
+    let postid = json_input["postid"];
+    let posttitle = json_input["posttitle"];
+    let postdesc = json_input["postdesc"];
+    let postimg = json_input["postimg"];
+
+    app.editPost(postid, posttitle, postdesc, postimg, function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
+
+// API for deleting a specific post
+server.post("/deletepost", (req, res) => {
+    let json_input = req.body;
+    let postid = json_input["postid"];
+
+    app.deletePost(postid, function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
+
+
+
 server.listen(port, () => {
     console.log(`Server listening at ${port}`);
 });
-
-// appclass.checkIfUserExists("persha95","123123pp", function(err,data){
-//     //if (err) {
-//     if (!data) {
-//         // error handling code goes here
-//         //res.json({message: false});
-//         // res.status(404).send(false);
-//         // console.log("ERROR : ",err);
-//         //console.log("failed...");
-//         return false;
-//     } else {
-//         // code to execute on data retrieval
-//         //res.json({message: true});
-//         //res.status(200).send(true);
-//         //console.log("result from db is : ",data);
-//         return true;
-//     }
-// });
-
-
-
-// appclass.checkUser("persha95","123123pps",function(err,data){
-//     if (err) {
-//         // error handling code goes here
-//         //res.json({message: false});
-//         // res.status(404).send(false);
-//         // console.log("ERROR : ",err);
-//         console.log("failed...");
-//         return false;
-//     } else {
-//         // code to execute on data retrieval
-//         //res.json({message: true});
-//         //res.status(200).send(true);
-//         console.log("result from db is : ",data);
-//         return true;
-//     }
-// });

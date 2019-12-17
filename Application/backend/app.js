@@ -19,6 +19,7 @@ var con = require('./db');
 //     }
 // });
 
+
 // fetchPosts(function(err,data){
 //     if (err) {
 //         console.log(err);
@@ -55,14 +56,14 @@ function insertPost(pTitle, pDesc, pIMG, uID, callback) {
     const DATE_FORMATER = require( 'dateformat' );
     const pTime = DATE_FORMATER(new Date(), "yyyy-mm-dd HH:MM:ss");
     const pEdit = 0;
-    con.connect(function(err) {
+    con.connect(function(err, data) {
         console.log("Connected!");
         var sql = "INSERT INTO Posts (PostTitle, PostDesc, PostTime, PostEdit, PostImg, fk_UserId) VALUES "+"('"+pTitle+"','"+pDesc+"','"+pTime+"','"+pEdit+"','"+pIMG+"','"+uID+"');";
         con.query(sql, function (err) {
             if (err) {
                 return callback(err, false);
             } else {
-                return callback(null, true);
+                return callback(err, true);
                 console.log("1 record inserted");
             }
         });
@@ -166,5 +167,7 @@ module.exports = {
     insertUser: insertUser,
     checkIfUserExists: checkIfUserExists,
     insertPost: insertPost,
-    fetchPosts: fetchPosts
+    fetchPosts: fetchPosts,
+    editPost: editPost,
+    deletePost: deletePost
 };
