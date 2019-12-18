@@ -152,6 +152,78 @@ server.post("/deletepost", (req, res) => {
 });
 
 
+// API for comment
+server.post("/comment", (req, res) => {
+    let json_input = req.body;
+    let comment = json_input["comment"];
+    let userid = json_input["userid"];
+    let postid = json_input["postid"];
+
+
+    app.createComment(comment,userid,postid,function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
+
+
+// API for uncommenting
+server.post("/uncomment", (req, res) => {
+    let json_input = req.body;
+    let commentid = json_input["commentid"];
+
+    app.deleteComment(commentid,function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
+
+// API for liking a post
+server.post("/like", (req, res) => {
+    let json_input = req.body;
+    let userid = json_input["userid"];
+    let postid = json_input["postid"];
+
+    app.likePost(userid,postid,function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
+
+// API for unliking a post
+server.post("/unlike", (req, res) => {
+    let json_input = req.body;
+    let likeid = json_input["likeid"];
+
+    app.unlikePost(likeid,function(err,data){
+        if (err) {
+            // error handling code goes here
+            res.status(404).send(false);
+            console.log("ERROR : ",err);
+        } else {
+            // code to execute on data retrieval
+            res.status(200).send(true);
+        }
+    });
+});
 
 server.listen(port, () => {
     console.log(`Server listening at ${port}`);

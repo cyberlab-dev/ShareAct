@@ -42,7 +42,23 @@ var con = require('./db');
 // });
 
 
+// createComment("test comment haha","1","1",function(err,data){
+//     if (err) {
+//         console.log(err);
+//         console.log("failed creating comment");
+//     } else {
+//         console.log("it works!!!");
+//     }
+// });
 
+// unlikePost("1",function(err,data){
+//     if (err) {
+//         console.log(err);
+//         console.log("failed creating comment");
+//     } else {
+//         console.log("it works!!!");
+//     }
+// });
 
 
 
@@ -119,6 +135,67 @@ function deletePost(postId, callback) {
     });
 }
 
+function createComment(comment, uID, pID, callback) {
+    const DATE_FORMATER = require( 'dateformat' );
+    const cTime = DATE_FORMATER(new Date(), "yyyy-mm-dd HH:MM:ss");
+    con.connect(function(err, data) {
+        console.log("Connected!");
+        var sql = "INSERT INTO Comments (ComMsg, ComTime, fk_UserId, fk_PostId) VALUES "+"('"+comment+"','"+cTime+"','"+uID+"','"+pID+"');";
+        con.query(sql, function (err) {
+            if (err) {
+                return callback(err, false);
+            } else {
+                return callback(err, true);
+                console.log("1 record inserted");
+            }
+        });
+    });
+}
+
+function deleteComment(cID, callback) {
+    con.connect(function(err) {
+        console.log("Connected!");
+        var sql = "DELETE FROM Comments WHERE ComId = "+"'"+cID+"';";
+        con.query(sql, function (err) {
+            if (err) {
+                return callback(err, false);
+            } else {
+                return callback(err, true);
+            }
+        });
+    });
+}
+
+
+function likePost(uID, pID, callback) {
+    con.connect(function(err, data) {
+        console.log("Connected!");
+        var sql = "INSERT INTO Likes (fk_UserId, fk_PostId) VALUES "+"('"+uID+"','"+pID+"');";
+        con.query(sql, function (err) {
+            if (err) {
+                return callback(err, false);
+            } else {
+                return callback(err, true);
+                console.log("1 record inserted");
+            }
+        });
+    });
+}
+
+function unlikePost(lID, callback) {
+    con.connect(function(err) {
+        console.log("Connected!");
+        var sql = "DELETE FROM Likes WHERE LikeId = "+"'"+lID+"';";
+        con.query(sql, function (err) {
+            if (err) {
+                return callback(err, false);
+            } else {
+                return callback(err, true);
+            }
+        });
+    });
+}
+
 
 //Insert user data into database using their usernames, emails and user passwords.
 function insertUser(un, um, up, callback) {
@@ -169,5 +246,9 @@ module.exports = {
     insertPost: insertPost,
     fetchPosts: fetchPosts,
     editPost: editPost,
-    deletePost: deletePost
+    deletePost: deletePost,
+    createComment: createComment,
+    deleteComment: deleteComment,
+    likePost: likePost,
+    unlikePost: unlikePost
 };
